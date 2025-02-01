@@ -2,23 +2,20 @@
 
 namespace App\Security\Voter;
 
-use App\Entity\Client;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-final class UserVoter extends Voter{
-    public const VIEW = 'VIEW_CLIENT';
-    public const EDIT = 'EDIT_CLIENT';
-    public const CREATE = 'CREATE_CLIENT';
-//    public const VIEW = 'POST_VIEW';
+final class ClientVoter extends Voter{
+    public const EDIT = 'POST_EDIT';
+    public const VIEW = 'POST_VIEW';
 
     protected function supports(string $attribute, mixed $subject): bool
     {
         // replace with your own logic
         // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, [self::VIEW, self::EDIT, self::CREATE])
-            && $subject instanceof Client;
+        return in_array($attribute, [self::EDIT, self::VIEW])
+            && $subject instanceof \App\Entity\Client;
     }
 
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
@@ -29,7 +26,7 @@ final class UserVoter extends Voter{
             return false;
         }
 
-//        // ... (check conditions and return true to grant permission) ...
+        // ... (check conditions and return true to grant permission) ...
 //        switch ($attribute) {
 //            case self::EDIT:
 //                // logic to determine if the user can EDIT
@@ -41,7 +38,8 @@ final class UserVoter extends Voter{
 //                break;
 //        }
 
+//        return false;
+        return in_array('ROLE_ADMIN', $user->getRoles()) || in_array('ROLE_MANAGER', $user->getRoles());
 
-        return in_array('ROLE_ADMIN', $user->getRoles());
     }
 }
