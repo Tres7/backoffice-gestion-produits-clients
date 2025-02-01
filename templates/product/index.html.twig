@@ -6,19 +6,22 @@
     <div class="container mt-4">
         <h1>Liste des Produits</h1>
 
-        {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('product_new') }}" class="btn btn-primary">Ajouter un produit</a>
-        {% endif %}
+        <div class="d-flex justify-content-between mb-3">
+            <!-- Bouton d'ajout visible uniquement pour les admins -->
+            {% if is_granted('CREATE_PRODUCT') %}
+                <a href="{{ path('product_new') }}" class="btn btn-primary">Ajouter un produit</a>
+            {% endif %}
 
-        <table class="table table-striped mt-3">
+            <a href="{{ path('products_export') }}" class="btn btn-success">Exporter en CSV</a>
+        </div>
+
+        <table class="table table-striped">
             <thead>
             <tr>
                 <th>Nom</th>
                 <th>Description</th>
                 <th>Prix</th>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <th>Actions</th>
-                {% endif %}
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -27,15 +30,18 @@
                     <td>{{ product.name }}</td>
                     <td>{{ product.description }}</td>
                     <td>{{ product.price }} €</td>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <td>
+
+                    <td>
+                        {% if is_granted('EDIT_PRODUCT', product) %}
                             <a href="{{ path('product_edit', {'id': product.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                        {% endif %}
+
+                        {% if is_granted('DELETE_PRODUCT', product) %}
                             <form method="POST" action="{{ path('product_delete', {'id': product.id}) }}" style="display:inline;" onsubmit="return confirm('Voulez-vous vraiment supprimer ce produit ?');">
                                 <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
                             </form>
-                        </td>
-                    {% endif %}
-                    <a href="{{ path('products_export') }}" class="btn btn-success mt-3">Exporter en CSV</a>
+                        {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>

@@ -18,7 +18,9 @@ class ProductCsvExporter
     {
         $response = new StreamedResponse(function () {
             $handle = fopen('php://output', 'w');
-            fputcsv($handle, ['Nom', 'Description', 'Prix']);
+            // Add BOM (Byte Order Mark) to fix UTF-8 in Excel
+            fprintf($handle, chr(0xEF).chr(0xBB).chr(0xBF));
+            fputcsv($handle, ['Name', 'Description', 'Price']);
 
             foreach ($this->productRepository->findAll() as $product) {
                 fputcsv($handle, [$product->getName(), $product->getDescription(), $product->getPrice()]);
