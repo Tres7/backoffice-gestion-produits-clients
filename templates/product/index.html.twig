@@ -4,47 +4,48 @@
 
 {% block body %}
     <div class="container mt-4">
-        <h1>Liste des Produits</h1>
+        <h1 class="mb-4 text-center">🛒 Liste des Produits</h1>
 
-        <div class="d-flex justify-content-between mb-3">
-            <!-- Bouton d'ajout visible uniquement pour les admins -->
+        <div class="d-flex justify-content-between mb-4">
             {% if is_granted('CREATE_PRODUCT') %}
-                <a href="{{ path('product_new') }}" class="btn btn-primary">Ajouter un produit</a>
+                <a href="{{ path('product_new') }}" class="btn btn-primary">
+                    ➕ Ajouter un produit
+                </a>
             {% endif %}
-
             <a href="{{ path('products_export') }}" class="btn btn-success">Exporter en CSV</a>
         </div>
 
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Prix</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
+        <!-- Affichage sous forme de cartes -->
+        <div class="row">
             {% for product in products %}
-                <tr>
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.description }}</td>
-                    <td>{{ product.price }} €</td>
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">{{ product.name }}</h5>
+                            <p class="card-text text-muted">{{ product.description }}</p>
+                            <h6 class="text-success"><strong>{{ product.price }} €</strong></h6>
 
-                    <td>
-                        {% if is_granted('EDIT_PRODUCT', product) %}
-                            <a href="{{ path('product_edit', {'id': product.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
-                        {% endif %}
+                            <div class="d-flex justify-content-between mt-3">
+                                {% if is_granted('EDIT_PRODUCT', product) %}
+                                    <a href="{{ path('product_edit', {'id': product.id}) }}" class="">
+                                        <img src="{{ asset('images/flat-style-circle-edit_icon-icons.com_66939.svg') }}" alt="Modifier" width="20">
+                                    </a>
+                                {% endif %}
 
-                        {% if is_granted('DELETE_PRODUCT', product) %}
-                            <form method="POST" action="{{ path('product_delete', {'id': product.id}) }}" style="display:inline;" onsubmit="return confirm('Voulez-vous vraiment supprimer ce produit ?');">
-                                <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                            </form>
-                        {% endif %}
-                    </td>
-                </tr>
+                                {% if is_granted('DELETE_PRODUCT', product) %}
+                                    <form method="POST" action="{{ path('product_delete', {'id': product.id}) }}"
+                                          onsubmit="return confirm('Voulez-vous vraiment supprimer ce produit ?');">
+                                        <button type="submit" class="border-0 bg-transparent p-0">
+                                            <img src="{{ asset('images/usertrash_92829.svg') }}" alt="Supprimer" width="20">
+                                        </button>
+                                    </form>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
-            </tbody>
-        </table>
+        </div>
     </div>
 {% endblock %}

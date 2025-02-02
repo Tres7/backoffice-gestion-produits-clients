@@ -1,55 +1,168 @@
+/* Couleur de fond */
 body {
-    background-color: skyblue;
+    background-color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-/* Sidebar styling */
+/* Barre de navigation */
+.navbar {
+    width: 100%;
+    height: 60px;
+    background: #343a40;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    color: white;
+}
+
+/* Sidebar */
 .sidebar {
+    position: fixed;
+    left: -250px;
+    top: 0;
     height: 100%;
     width: 250px;
-    position: fixed;
-    top: 0;
-    left: -250px;
-    background-color: #343a40;
+    background: #343a40;
+    transition: left 0.3s ease-in-out;
     padding-top: 20px;
-    transition: 0.3s;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+.sidebar.open {
+    left: 0;
 }
 
-.sidebar a {
-    padding: 10px 15px;
-    text-decoration: none;
+/* Style du texte dans la sidebar */
+.sidebar h4.user-name {
     font-size: 18px;
     color: white;
-    display: block;
-    transition: 0.3s;
-}
-
-.sidebar a:hover {
-    background-color: #575d63;
-}
-
-.sidebar .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 30px;
-    cursor: pointer;
-    color: white;
-}
-
-/* Hamburger button */
-.hamburger {
-    font-size: 30px;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    left: 15px;
-    color: black;
-}
-
-/* Message de bienvenue */
-.welcome {
-    margin-left: 60px;
-    font-size: 20px;
     font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Liens de la sidebar */
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background 0.3s ease-in-out;
+}
+.sidebar a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Effet de sélection du lien actif */
+.sidebar a.active {
+    background: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+}
+
+/* Bouton de fermeture de la sidebar */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Hamburger Button */
+.hamburger {
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+.hamburger:hover {
+    transform: scale(1.1);
+}
+
+/* Contenu principal */
+.content {
+    margin-left: 10px;
+    padding: 20px;
+}
+
+
+/* Style des cartes produit */
+.card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style des boutons */
+.btn {
+    border-radius: 5px;
+}
+
+.text-primary {
+    font-weight: bold;
+}
+
+/* Style général du formulaire de connexion */
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Titre */
+.login-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Champs de formulaire */
+.login-container .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Bouton de connexion */
+.login-container .btn-primary {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    background: #007bff;
+    border: none;
+}
+
+.login-container .btn-primary:hover {
+    background: #0056b3;
+}
+
+/* Message d'erreur */
+.login-container .alert {
+    margin-bottom: 15px;
+}
+
+/* Checkbox */
+.login-container .checkbox label {
+    font-size: 14px;
 }
 
