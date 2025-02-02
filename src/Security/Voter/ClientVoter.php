@@ -7,39 +7,42 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 final class ClientVoter extends Voter{
-    public const EDIT = 'POST_EDIT';
-    public const VIEW = 'POST_VIEW';
+    public const EDIT = 'EDIT_CLIENT';
+    public const VIEW = 'VIEW_CLIENT';
+    public const CREATE = 'CREATE_CLIENT';
+
+    public const DELETE = 'DELETE_CLIENT';
+
 
     protected function supports(string $attribute, mixed $subject): bool
     {
-        // replace with your own logic
-        // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, [self::EDIT, self::VIEW])
+        //self::CREATE not depend on a specific product
+        if ($attribute === self::VIEW || $attribute === self::CREATE) {
+            return true;
+        }
+        return in_array($attribute, [self::EDIT, self::CREATE, self::DELETE], true)
             && $subject instanceof \App\Entity\Client;
+
     }
 
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();
-        // if the user is anonymous, do not grant access
+
         if (!$user instanceof UserInterface) {
             return false;
         }
 
-        // ... (check conditions and return true to grant permission) ...
-//        switch ($attribute) {
-//            case self::EDIT:
-//                // logic to determine if the user can EDIT
-//                // return true or false
-//                break;
-//            case self::VIEW:
-//                // logic to determine if the user can VIEW
-//                // return true or false
-//                break;
-//        }
+        switch ($attribute) {
+            case self::VIEW:
+            case self::EDIT:
+            case self::CREATE:
+            case self::DELETE:
+                return in_array('ROLE_ADMIN', $user->getRoles()) || in_array('ROLE_MANAGER', $user->getRoles());
+        }
 
-//        return false;
-        return in_array('ROLE_ADMIN', $user->getRoles()) || in_array('ROLE_MANAGER', $user->getRoles());
 
+        return false;
     }
+
 }

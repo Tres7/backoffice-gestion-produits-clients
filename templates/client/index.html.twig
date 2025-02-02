@@ -1,20 +1,55 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ClientController!{% endblock %}
+{% block title %}Liste des Clients{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Gestion des Clients</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <div class="d-flex justify-content-between mb-3">
+            <!-- Bouton d'ajout visible uniquement pour les admins et gestionnaires -->
+            {% if is_granted('CREATE_CLIENT') %}
+                <a href="{{ path('client_new') }}" class="btn btn-primary">Ajouter un client</a>
+            {% endif %}
+        </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/kpogl/OneDrive/Documents/Informatique/Informatique/IUT de Metz/BUT 3/S6/Dev Avancé/Projets/projet_final/src/Controller/ClientController.php</code></li>
-        <li>Your template at <code>C:/Users/kpogl/OneDrive/Documents/Informatique/Informatique/IUT de Metz/BUT 3/S6/Dev Avancé/Projets/projet_final/templates/client/index.html.twig</code></li>
-    </ul>
-</div>
+        <table class="table table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                <th>Adresse</th>
+                <th>Date de création</th>
+                <th>Actions</th>  {# Afficher la colonne en permanence #}
+            </tr>
+            </thead>
+            <tbody>
+            {% for client in clients %}
+                <tr>
+                    <td>{{ client.id }}</td>
+                    <td>{{ client.lastname }}</td>
+                    <td>{{ client.firstname }}</td>
+                    <td>{{ client.email }}</td>
+                    <td>{{ client.phoneNumber }}</td>
+                    <td>{{ client.address }}</td>
+                    <td>{{ client.createdAt ? client.createdAt|date('d/m/Y') : 'N/A' }}</td>
+                    <td>
+                        {% if is_granted('EDIT_CLIENT', client) %}
+                            <a href="{{ path('client_edit', {'id': client.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                        {% endif %}
+                        {% if is_granted('DELETE_CLIENT', client) %}
+                            <form action="{{ path('client_delete', {'id': client.id}) }}" method="post" style="display:inline;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
+                                <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                            </form>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
 {% endblock %}

@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'Cet email est déjà utilisé par un autre client.')]
 class Client
@@ -21,16 +20,15 @@ class Client
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Le prénom ne peut pas être vide.')]
     #[Assert\Regex(
-        pattern: "/^[a-zA-ZÀ-ÿ\s'-]+$/",
+        pattern: "/^[\p{L}\s'-]+$/u",
         message: "Le prénom ne doit contenir que des lettres, espaces et apostrophes."
     )]
     private ?string $firstname = null;
 
-
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Le nom ne peut pas être vide.')]
     #[Assert\Regex(
-        pattern: "/^[a-zA-ZÀ-ÿ\s'-]+$/",
+        pattern: "/^[\p{L}\s'-]+$/u",
         message: "Le nom ne doit contenir que des lettres, espaces et apostrophes."
     )]
     private ?string $lastname = null;

@@ -25,7 +25,7 @@ final class ClientController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'client_new')]
+    #[Route('/clients/new', name: 'client_new')]
     public function new(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
     {
         $this->denyAccessUnlessGranted('CREATE_CLIENT');
@@ -37,7 +37,7 @@ final class ClientController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $errors = $validator->validate($client);
             if (count($errors) > 0) {
-                return $this->render('client/new.html.twig', [
+                return $this->render('client/client_new.html.twig', [
                     'form' => $form->createView(),
                     'errors' => $errors, // Ajout des erreurs pour affichage
                 ]);
@@ -50,12 +50,13 @@ final class ClientController extends AbstractController
             return $this->redirectToRoute('clients_index');
         }
 
-        return $this->render('client/new.html.twig', [
+        return $this->render('client/client_new.html.twig', [
             'form' => $form->createView(),
         ]);
+
     }
 
-    #[Route('/edit/{id}', name: 'client_edit')]
+    #[Route('/clients/edit/{id}', name: 'client_edit')]
     public function edit(Client $client, Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
     {
         $this->denyAccessUnlessGranted('EDIT_CLIENT', $client);
@@ -66,7 +67,7 @@ final class ClientController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $errors = $validator->validate($client);
             if (count($errors) > 0) {
-                return $this->render('client/edit.html.twig', [
+                return $this->render('client/client_edit.html.twig', [
                     'form' => $form->createView(),
                     'client' => $client,
                     'errors' => $errors, // Ajout des erreurs pour affichage
@@ -79,13 +80,13 @@ final class ClientController extends AbstractController
             return $this->redirectToRoute('clients_index');
         }
 
-        return $this->render('client/edit.html.twig', [
+        return $this->render('client/client_edit.html.twig', [
             'form' => $form->createView(),
             'client' => $client,
         ]);
     }
 
-    #[Route('/delete/{id}', name: 'client_delete')]
+    #[Route('/clients/delete/{id}', name: 'client_delete', methods: ['POST'])]
     public function delete(Client $client, EntityManagerInterface $entityManager): Response
     {
         $this->denyAccessUnlessGranted('DELETE_CLIENT', $client);

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un Client{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="text-center">Ajouter un Client</h1>
+
+        <div class="card shadow-sm p-4 mt-4">
+            {{ form_start(form, {'attr': {'data-turbo': 'false'}}) }}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        {{ form_label(form.firstname) }}
+                        {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.firstname) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        {{ form_label(form.lastname) }}
+                        {{ form_widget(form.lastname, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.lastname) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.email) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.phoneNumber) }}
+                {{ form_widget(form.phoneNumber, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.phoneNumber) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.address) }}
+                {{ form_widget(form.address, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.address) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.createdAt) }}
+                {{ form_widget(form.createdAt, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.createdAt) }}
+            </div>
+
+            <button type="submit" class="btn btn-success">Ajouter</button>
+            <a href="{{ path('clients_index') }}" class="btn btn-secondary">Annuler</a>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
