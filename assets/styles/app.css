@@ -1,6 +1,6 @@
 /* Couleur de fond */
 body {
-    background-color: white;
+    background-color: #afb1b2;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -166,3 +166,78 @@ body {
     font-size: 14px;
 }
 
+
+/* =======================================
+   USER EDIT PAGE STYLES
+   ======================================= */
+.user-edit-card {
+    max-width: 600px;
+    margin: auto;
+    border-radius: 12px;
+    background-color: #ffffff;
+}
+
+/* Form Inputs */
+.user-edit-card .form-control {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+/* Form Labels */
+.user-edit-card .form-label {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Role Checkbox */
+.user-edit-card .form-check-input {
+    margin-left: 10px;
+}
+
+/* Buttons */
+.user-edit-card .btn {
+    border-radius: 8px;
+    font-weight: bold;
+    padding: 10px 15px;
+}
+
+.user-edit-card .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.user-edit-card .btn-success:hover {
+    background-color: #218838;
+}
+
+.user-edit-card .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.user-edit-card .btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.user-edit-card .btn {
+    border-radius: 8px;
+    font-weight: bold;
+    padding: 10px 15px;
+}
+
+/* Correction de l'alignement */
+.user-edit-card .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.user-edit-card .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+/* Empêche le chevauchement */
+.user-edit-card .d-flex {
+    gap: 10px;
+}

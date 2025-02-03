@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Product;
-use App\Form\ProductType;
+use App\Form\Product\ProductFormType;
 use App\Repository\ProductRepository;
 use App\Service\ProductCsvExporter;
 use Doctrine\ORM\EntityManagerInterface;
@@ -40,7 +40,7 @@ class ProductController extends AbstractController
         $this->denyAccessUnlessGranted('CREATE_PRODUCT');
 
         $product = new Product();
-        $form = $this->createForm(ProductType::class, $product);
+        $form = $this->createForm(ProductFormType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -61,7 +61,7 @@ class ProductController extends AbstractController
     {
         $this->denyAccessUnlessGranted('EDIT_PRODUCT', $product);
 
-        $form = $this->createForm(ProductType::class, $product);
+        $form = $this->createForm(ProductFormType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

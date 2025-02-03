@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\User;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,8 +27,8 @@ class UserEditFormType extends AbstractType
                 ],
                 'expanded' => true,
                 'multiple' => true,
-            ])
-            ->add('save', SubmitType::class, ['label' => 'Mettre à jour']);
+            ]);
+//            ->add('save', SubmitType::class, ['label' => 'Mettre à jour']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

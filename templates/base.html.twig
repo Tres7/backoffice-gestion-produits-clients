@@ -36,7 +36,7 @@
     <hr>
     <a href="{{ path('home') }}">Accueil</a>
     {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('admin_users') }}">Utilisateurs</a>
+        <a href="{{ path('users') }}">Utilisateurs</a>
     {% endif %}
     <a href="{{ path('products_index') }}">Produits</a>
     {% if is_granted('ROLE_MANAGER') or is_granted('ROLE_ADMIN') %}
@@ -45,7 +45,17 @@
 </div>
 
 {% block body %}
-{#    <h1 align="center">Bienvenue, {{ app.user.firstname }} {{ app.user.lastname }}</h1>#}
+    {% for label, messages in app.flashes %}
+        <div class="alert alert-{{ label }} alert-dismissible fade show mx-4 mt-3" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+
+
+
 {% endblock %}
 
 <!-- Script pour gérer la sidebar -->

@@ -4,7 +4,12 @@
 
 {% block body %}
     <div class="container mt-4">
-        <h1>Gestion des utilisateurs</h1>
+        <h1 class="mb-4">Gestion des utilisateurs</h1>
+
+        <!-- Bouton Ajouter un utilisateur -->
+        <div class="d-flex justify-content-between mb-3">
+            <a href="{{ path('users_new') }}" class="btn btn-primary">➕ Ajouter un utilisateur</a>
+        </div>
 
         <table class="table table-striped">
             <thead>
@@ -26,9 +31,9 @@
                     <td>{{ user.firstName }}</td>
                     <td>{{ user.roles|join(', ') }}</td>
                     <td>
-                        <a href="{{ path('admin_users_edit', {'id': user.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                        <a href="{{ path('users_edit', {'id': user.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
 
-                        <form method="POST" action="{{ path('admin_users_delete', {'id': user.id}) }}" style="display:inline;" onsubmit="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?');">
+                        <form method="POST" action="{{ path('users_delete', {'id': user.id}) }}" style="display:inline;" onsubmit="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?');">
                             <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
                         </form>
                     </td>

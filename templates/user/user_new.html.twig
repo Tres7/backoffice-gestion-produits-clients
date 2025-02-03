@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un nouvel utilisateur{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="text-center mb-0">👤 Ajouter un utilisateur</h4>
+                    </div>
+                    <div class="card-body">
+                        {{ form_start(form, {'method': 'POST','attr': {'data-turbo': 'false'}}) }}
+
+                        <div class="mb-3">
+                            {{ form_label(form.email, 'E-mail', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Entrez l\'email'}}) }}
+                            {{ form_errors(form.email) }}
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form_label(form.firstName, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.firstName, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le prénom'}}) }}
+                                {{ form_errors(form.firstName) }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form_label(form.lastName, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.lastName, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le nom'}}) }}
+                                {{ form_errors(form.lastName) }}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_label(form.roles, 'Rôle', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.roles, {'attr': {'class': 'form-check'}}) }}
+                            {{ form_errors(form.roles) }}
+                        </div>
+
+                        {% if form.password is defined %}
+                            <div class="mb-3">
+                                {{ form_label(form.password, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.password, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le mot de passe'}}) }}
+                                {{ form_errors(form.password) }}
+                            </div>
+                        {% endif %}
+
+                        <div class="text-left">
+                            <button type="submit" class="btn btn-success">✅ Ajouter</button>
+                            <a href="{{ path('users') }}" class="btn btn-secondary">🔙 Retour</a>
+                        </div>
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

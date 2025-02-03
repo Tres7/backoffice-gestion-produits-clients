@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Client;
-use App\Form\ClientType;
+use App\Form\Client\ClientFormType;
 use App\Repository\ClientRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,7 +31,7 @@ final class ClientController extends AbstractController
         $this->denyAccessUnlessGranted('CREATE_CLIENT');
 
         $client = new Client();
-        $form = $this->createForm(ClientType::class, $client);
+        $form = $this->createForm(ClientFormType::class, $client);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -61,7 +61,7 @@ final class ClientController extends AbstractController
     {
         $this->denyAccessUnlessGranted('EDIT_CLIENT', $client);
 
-        $form = $this->createForm(ClientType::class, $client);
+        $form = $this->createForm(ClientFormType::class, $client);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
