@@ -26,10 +26,6 @@ class ProductFormType extends AbstractType
                 'label' => 'Prix',
                 'currency' => 'EUR',
                 'attr' => ['class' => 'form-control']
-            ])
-            ->add('save', SubmitType::class, [
-                'label' => 'Enregistrer',
-                'attr' => ['class' => 'btn btn-success mt-3']
             ]);
     }
 

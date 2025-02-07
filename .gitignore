@@ -23,3 +23,10 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+### Logs et caches ###
+/var/cache/
+/var/log/
+
+### IDE & Système ###
+/.idea/
