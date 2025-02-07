@@ -241,3 +241,27 @@ body {
 .user-edit-card .d-flex {
     gap: 10px;
 }
+
+/* ========== Amélioration de la page Gestion des utilisateurs ========== */
+
+/* Table des utilisateurs */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Style des lignes alternées pour lisibilité */
+.user-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Style des boutons */
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+/* Confirmation suppression */
+.btn-danger:hover {
+    background-color: #c9302c;
+}

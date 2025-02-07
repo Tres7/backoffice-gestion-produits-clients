@@ -44,6 +44,8 @@ final class UserController extends AbstractController{
             $user->setPassword($hashedPassword);
             $entityManager->persist($user);
             $entityManager->flush();
+            $this->addFlash('success', 'Utilisateur ajouté avec succès.');
+
 
             return $this->redirectToRoute('users');
         }
@@ -63,6 +65,7 @@ final class UserController extends AbstractController{
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+            $this->addFlash('success', 'Utilisateur modifié avec succès.');
             return $this->redirectToRoute('users');
         }
 
@@ -79,6 +82,7 @@ final class UserController extends AbstractController{
 
         $entityManager->remove($user);
         $entityManager->flush();
+        $this->addFlash('success', 'Utilisateur supprimé avec succès.');
 
         return $this->redirectToRoute('users');
     }
