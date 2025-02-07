@@ -18,9 +18,6 @@ class ClientFormType extends AbstractType
             ->add('email')
             ->add('phoneNumber')
             ->add('address')
-//            ->add('createdAt', null, [
-//                'widget' => 'single_text'
-//            ])
             ->add('createdAt', DateType::class, [
                 'widget' => 'single_text',
                 'attr' => ['class' => 'form-control'],

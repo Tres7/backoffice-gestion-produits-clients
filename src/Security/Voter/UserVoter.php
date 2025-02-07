@@ -33,19 +33,6 @@ final class UserVoter extends Voter{
             return false;
         }
 
-//        // ... (check conditions and return true to grant permission) ...
-//        switch ($attribute) {
-//            case self::EDIT:
-//                // logic to determine if the user can EDIT
-//                // return true or false
-//                break;
-//            case self::VIEW:
-//                // logic to determine if the user can VIEW
-//                // return true or false
-//                break;
-//        }
-
-
         return in_array('ROLE_ADMIN', $user->getRoles());
     }
 }

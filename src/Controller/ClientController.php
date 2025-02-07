@@ -39,7 +39,7 @@ final class ClientController extends AbstractController
             if (count($errors) > 0) {
                 return $this->render('client/client_new.html.twig', [
                     'form' => $form->createView(),
-                    'errors' => $errors, // Ajout des erreurs pour affichage
+                    'errors' => $errors,
                 ]);
             }
 
@@ -70,7 +70,7 @@ final class ClientController extends AbstractController
                 return $this->render('client/client_edit.html.twig', [
                     'form' => $form->createView(),
                     'client' => $client,
-                    'errors' => $errors, // Ajout des erreurs pour affichage
+                    'errors' => $errors,
                 ]);
             }
 

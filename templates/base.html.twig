@@ -13,16 +13,16 @@
 </head>
 <body>
 
-<!-- Barre de navigation -->
+<!-- navigation bar -->
 <nav class="navbar navbar-dark bg-dark d-flex justify-content-between px-3">
     <div class="d-flex align-items-center">
         <span class="hamburger" onclick="toggleSidebar()">&#9776;</span>
-        <span class="navbar-brand text-white ms-2"><strong>SkyDash</strong></span> {# Nom visible en sidebar ouverte #}
+        <span class="navbar-brand text-white ms-2"><strong>SkyDash</strong></span>
     </div>
     <a href="{{ path('app_logout') }}" class="btn btn-outline-light">Déconnexion</a>
 </nav>
 
-<!-- Sidebar -->
+<!-- sidebar -->
 <div id="sidebar" class="sidebar">
     <button class="close-btn" onclick="toggleSidebar()">&times;</button>
     <h4 class="text-center mt-3 user-name">
@@ -58,7 +58,7 @@
 
 {% endblock %}
 
-<!-- Script pour gérer la sidebar -->
+<!-- script to manage sidebar -->
 <script>
     function toggleSidebar() {
         let sidebar = document.getElementById("sidebar");

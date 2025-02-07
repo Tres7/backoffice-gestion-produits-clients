@@ -7,7 +7,6 @@
         <h1 class="text-center mb-4">Gestion des Clients</h1>
 
         <div class="d-flex justify-content-between mb-3">
-            <!-- Bouton d'ajout visible uniquement pour les admins et gestionnaires -->
             {% if is_granted('CREATE_CLIENT') %}
                 <a href="{{ path('client_new') }}" class="btn btn-primary">Ajouter un client</a>
             {% endif %}
@@ -23,7 +22,7 @@
                 <th>Téléphone</th>
                 <th>Adresse</th>
                 <th>Date de création</th>
-                <th>Actions</th>  {# Afficher la colonne en permanence #}
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>

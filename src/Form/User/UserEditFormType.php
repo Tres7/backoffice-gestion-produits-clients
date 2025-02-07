@@ -28,7 +28,6 @@ class UserEditFormType extends AbstractType
                 'expanded' => true,
                 'multiple' => true,
             ]);
-//            ->add('save', SubmitType::class, ['label' => 'Mettre à jour']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

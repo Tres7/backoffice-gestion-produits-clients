@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="container mt-4">
-        <h1 class="mb-4 text-center">🛒 Liste des Produits</h1>
+        <h1 class="mb-4 text-center">Liste des Produits</h1>
 
         <div class="d-flex justify-content-between mb-4">
             {% if is_granted('CREATE_PRODUCT') %}
@@ -15,7 +15,6 @@
             <a href="{{ path('products_export') }}" class="btn btn-success">Exporter en CSV</a>
         </div>
 
-        <!-- Affichage sous forme de cartes -->
         <div class="row">
             {% for product in products %}
                 <div class="col-md-4 mb-4">
