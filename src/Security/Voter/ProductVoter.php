@@ -19,8 +19,12 @@ final class ProductVoter extends Voter{
         if ($attribute === self::CREATE) {
             return true;
         }
+
+        if ($attribute === self::VIEW) {
+            return true;
+        }
         // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, [self::VIEW, self::CREATE,self::EDIT, self::DELETE])
+        return in_array($attribute, [self::CREATE,self::EDIT, self::DELETE])
             && $subject instanceof Product;
     }
 

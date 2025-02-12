@@ -265,3 +265,29 @@ body {
 .btn-danger:hover {
     background-color: #c9302c;
 }
+
+
+/* Conteneur principal de la page d'accueil */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Ajuste la hauteur pour centrer le texte */
+    text-align: center;
+}
+
+/* Titre de bienvenue */
+.welcome-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #343a40; /* Couleur sombre pour bien ressortir */
+    margin-bottom: 10px;
+}
+
+/* Texte de bienvenue */
+.welcome-text {
+    font-size: 1.2rem;
+    color: #6c757d; /* Gris pour un effet plus professionnel */
+    max-width: 600px;
+}

@@ -55,8 +55,21 @@
     {% endfor %}
 
     {% block body %}
+    <div class="container home-container text-center">
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER') %}
+            <h1 class="welcome-title">Bienvenue sur votre Backoffice</h1>
+            <p class="welcome-text">
+                Gérez vos utilisateurs, produits et clients en toute simplicité avec SkyDash.
+            </p>
+        {% else %}
+            <h1 class="welcome-title">Bienvenue</h1>
+            <p class="welcome-text">
+                Vous êtes connecté à SkyDash. Consultez les produits disponibles.
+            </p>
+        {% endif %}
+    </div>
+{% endblock %}
 
-    {% endblock %}
 </body>
 <!-- script to manage sidebar -->
 <script>

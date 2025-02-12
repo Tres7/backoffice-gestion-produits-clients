@@ -19,8 +19,7 @@ class ProductController extends AbstractController
     #[Route('/product', name: 'products_index')]
     public function index(ProductRepository $productRepository): Response
     {
-//        dump($this->getUser()->getRoles());
-//        die();
+        $this->denyAccessUnlessGranted('VIEW_PRODUCT');
 
         return $this->render('product/index.html.twig', [
             'products' => $productRepository->findAllSortedByPriceDesc(),
