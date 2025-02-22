@@ -20,7 +20,9 @@
             <span class="hamburger" onclick="toggleSidebar()">&#9776;</span>
             <span class="navbar-brand text-white ms-2"><strong>SkyDash</strong></span>
         </div>
+        {% if app.user %}
         <a href="{{ path('app_logout') }}" class="btn btn-outline-light">Déconnexion</a>
+        {% endif %}
     </nav>
 
     <!-- sidebar -->
