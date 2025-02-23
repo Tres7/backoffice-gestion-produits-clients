@@ -62,3 +62,13 @@ Le projet sera accessible à l'adresse http://localhost:8000/home.
 `php bin/phpunit`
 
 ## Lien vers la vidéo de démonstration
+https://drive.google.com/file/d/1SidgGNvTyE3h4_vRp1gvP4aay9ccr3y8/view?usp=sharing 
+
+## Petite remarque
+Si vous lancez l'application et vous avez une erreur du type: "LogicException  RuntimeError
+HTTP 500 Internal Server Error
+An exception has been thrown during the rendering of a template ("The "@hotwired/stimulus" vendor asset is missing. Try running the "importmap:install" command."). "
+- Faites les commandes suivantes pour installer Stimulus:
+  `composer require symfony/stimulus-bundle`
+  `php bin/console importmap:install`
+
