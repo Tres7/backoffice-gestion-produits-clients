@@ -72,3 +72,8 @@ An exception has been thrown during the rendering of a template ("The "@hotwired
   `composer require symfony/stimulus-bundle`
   `php bin/console importmap:install`
 
+## 🎓 Évaluation académique
+Projet réalisé dans le cadre d’un travail universitaire.  
+Note obtenue : **20 / 20**
+
+
